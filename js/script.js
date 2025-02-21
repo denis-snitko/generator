@@ -38,4 +38,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
     resultSpan.textContent = randomNum;
   });
+
+  document.addEventListener('dblclick', function (e) {
+    e.preventDefault();
+}, { passive: false });
 });
