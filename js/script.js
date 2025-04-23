@@ -5,12 +5,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const resultSpan = document.getElementById('result');
   const MAX_VALUE = 10000000; // Максимальное значение
 
+  const defaultMin = '1';
+  const defaultMax = '100';
+  minValueInput.value = localStorage.getItem('minValue') || defaultMin;
+  maxValueInput.value = localStorage.getItem('maxValue') || defaultMax;
+
   function sanitizeInput(input) {
     input.value = input.value.replace(/^0+/, '') || '0';
 
     if (parseInt(input.value, 10) > MAX_VALUE) {
       input.value = MAX_VALUE;
     }
+
+    localStorage.setItem(input.id, input.value);
   }
 
   minValueInput.addEventListener('input', function () {
@@ -39,7 +46,11 @@ document.addEventListener('DOMContentLoaded', function () {
     resultSpan.textContent = randomNum;
   });
 
-  document.addEventListener('dblclick', function (e) {
-    e.preventDefault();
-}, { passive: false });
+  document.addEventListener(
+    'dblclick',
+    function (e) {
+      e.preventDefault();
+    },
+    { passive: false }
+  );
 });
